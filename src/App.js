@@ -1,23 +1,29 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Item from './Components/Item/item';
+import Menu from './Components/Menu/menu';
+import Formulario from './Components/Formulario/formulario';
+import Container from 'react-bootstrap/esm/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Menu></Menu>
+      <Container>
+        <Row>
+          <Col>
+          <Formulario>
+            </Formulario></Col>
+          <Col>
+          <Item></Item>
+          <Item></Item>
+          <Item></Item>
+          <Item></Item>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
