@@ -1,0 +1,78 @@
+# Node modules (tanto en frontend como en backend)
+**/node_modules/
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Build directories
+build/
+dist/
+
+# Frontend React build output
+/frontend/build/
+
+# Coverage directory used by testing tools
+coverage/
+
+# Dependency directories
+jspm_packages/
+
+# Next.js / Vite / other tools
+.next/
+out/
+.vite/
+
+# dotenv environment files
+.env
+.env.*.local
+.env.local
+
+# Mac system files
+.DS_Store
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Parcel cache
+.cache/
+
+# Binaries
+*.exe
+*.out
+*.app
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+*.tgz
+*.gz
+
+# Local .git folder in subprojects
+.git/
+
+# React Native files (if not used, can be omitted)
+.expo/

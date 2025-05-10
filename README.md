@@ -9,11 +9,11 @@ Esta aplicación permite registrar tareas a hacer y así poder controlar las fec
 ## Cómo ejecutar la aplicación
 
 1. Clonar el repositorio.
-2. Ejecutar el comando:
+2. Ejecutar el comando para el backend y para el frontend:
 ```
 npm install
 ```
-3. Ejecutar el comando:
+3. Ejecutar el comando en el backend y en el frontend:
 ```
 npm start
 ```
