@@ -14,8 +14,12 @@ router.post('/addGoal', function(req, res, next) {
     if (req.body && req.body.name && req.body.description && req.body.dueDate) {
         req.body.id = timestamp;
         tasks.push(req.body);
+        res.json(tasks);
     }
-    res.json(tasks);
+    else 
+    {
+        res.status(400).json({});
+    }
 });
 
 router.delete('/removeGoal/:id', function(req, res, next) {
@@ -25,7 +29,7 @@ router.delete('/removeGoal/:id', function(req, res, next) {
         res.json(tasks);
     }
     else {
-        res.json([]);
+       res.status(400).json({});
     }
 });
 
