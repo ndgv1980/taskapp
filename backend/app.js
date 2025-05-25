@@ -10,8 +10,83 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var usersTasks = require('./routes/tasks');
 var usersGoals = require('./routes/goals');
+var tasksRouter = require('./routes/tasks');
+var goalsRouter = require('./routes/goals');
 
 var app = express();
+
+const mysql = require('mysql');
+var connection = mysql.createConnection({
+host:'localhost',
+user:'sqluser',
+port: 3306,
+password:'password'
+});
+
+connection.connect(function(err)
+{
+  if(err){
+    console.error('error connecting' + err.stack);
+    return;
+  }
+  console.log('Connected as id' + connection.threadId);
+
+});
+
+let queryCreateDB = 'CREATE DATABASE IF NOT EXISTS desarrolloweb';
+let queryCreateTableGoals = 'CREATE TABLE IF NOT EXISTS desarrolloweb.goals( \
+id int(11) NOT NULL auto_increment, \
+name varchar(250) NOT NULL default \' \', \
+description varchar(250) NOT NULL default \' \', \
+dueDate varchar(250) NOT NULL default \' \', \
+PRIMARY KEY(id) \
+);'
+
+let queryCreateTableTasks = 'CREATE TABLE IF NOT EXISTS desarrolloweb.tasks( \
+id int(11) NOT NULL auto_increment, \
+name varchar(250) NOT NULL default \' \', \
+description varchar(250) NOT NULL default \' \', \
+dueDate varchar(250) NOT NULL default \' \', \
+PRIMARY KEY(id) \
+);'
+
+connection.query(queryCreateDB, function(err, results, fields){
+if(err)
+  {
+    console.log(err);
+    return; 
+  }
+  else
+  {
+    console.log(results);
+  }
+});
+
+connection.query(queryCreateTableGoals, function(err, results, fields){
+if(err)
+  {
+    console.log(err);
+    return; 
+  }
+  else
+  {
+    console.log(results);
+  }
+});
+
+connection.query(queryCreateTableTasks, function(err, results, fields){
+if(err)
+  {
+    console.log(err);
+    return; 
+  }
+  else
+  {
+    console.log(results);
+  }
+});
+
+connection.destroy();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,8 +111,10 @@ router.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/', router);
 app.use('/users', usersRouter);
-app.use('/tasks', usersTasks);
-app.use('/goals', usersGoals);
+app.use('/tasks', tasksRouter);
+app.use('/goals', goalsRouter);
+//app.use('/tasks', usersTasks);
+//app.use('/goals', usersGoals);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
