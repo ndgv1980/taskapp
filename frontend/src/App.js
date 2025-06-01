@@ -14,47 +14,41 @@ import{
   addTodo,
   initAddTodo
 } from './Reducers/todoSlice'
+import { selectTodos } from './Reducers/todoSlice';
+import { selectGoals } from './Reducers/goalsSlice';
 
 function App() {
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todos.value);
-  const arr = [
-    {
-      'name':'caminar al perro 1',
-      'description':'paseando a Pulgoso',
-      'dueDate':'2024-02-04'
-    },
-    {
-      'name':'caminar al perro 2',
-      'description':'paseando a mi perro Dinamita',
-      'dueDate':'2020-01-12'
-    }
-  ]
-  useEffect(() => {
-    arr.map((item) => {
-      dispatch(initAddTodo(item))
-    })
-    console.log('refresh');
-  }, []);
+  const todos = useSelector(selectTodos);
+  const goals = useSelector(selectGoals);
+  const option = useSelector((state) => state.option.value);
+
   return (
     <div className="App">
       <Menu></Menu>
       <Container>
         <Row>
-          <Col>
-          <Formulario>
-            </Formulario></Col>
-          <Col>
-          <div className='scrolling'>
-              {
-                todos.map((todo, index) => {
-                  return (
-                    <Item key={index} name={todo.name} description={todo.description} dueDate={todo.dueDate}/>
-                  )
+          <Col xs={0} md={0} className='d-none d-sm-none d-md-block'>
+            <Formulario/>
+          </Col>
+          <Col xs={0} sm={0}>
+            <Row>
+              <div className='scrolling'>
+                {
+                  option === 'goals' ?
+                  goals.map((goal, index) => {
+                    return (
+                      <Item key={index} name={goal.name} description={goal.description} dueDate={goal.dueDate} />
+                    )
+                  }) :
+                  todos.map((todo, index) => {
+                    return (
+                      <Item key={index} name={todo.name} description={todo.description} dueDate={todo.dueDate} />
+                    )
+                  })
                 }
-                )
-              }
-          </div>
+              </div>
+            </Row>
           </Col>
         </Row>
       </Container>
